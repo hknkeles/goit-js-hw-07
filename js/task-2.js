@@ -28,46 +28,13 @@ const images = [
 
 const gallery = document.querySelector(".gallery");
 
-loadImages(images);
+const image = images.map(
+  ({url,alt}) => {
+   return `<li><img src="${url}" alt="${alt}" width="300"></li>`
+  }
+).join("");
 
-function loadImages(images){
-  gallery.innerHTML="";
-
-  images.forEach(image => {
-    
-    const li  = createItems(image);
-    
-    gallery.appendChild(li);
-
-  });
-
-  // for...of yönetmi ile
-  /* for (const image of images) {
-    
-      const li  = createItems(image);
-      gallery.appendChild(li);
-
-  } */
-
-
-}
-
-function createItems(item){
-
-  // image
-  const img = document.createElement("img");
-  img.className = "image"
-  img.alt = item.alt;
-  img.src = item.url;
-
-  // li
-  const li = document.createElement("li");
-  li.classList.add("galleryImg");
-  li.appendChild(img);
-
-  return li;
-
-}
+gallery.insertAdjacentHTML("beforeend",image);
 
 
 
